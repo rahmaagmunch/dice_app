@@ -17,6 +17,7 @@ void main() {
   );
 }
 
+/*
 class DicePage extends StatelessWidget {
   //where we create a variable
   int leftDiceNumber = 6;
@@ -45,7 +46,7 @@ class DicePage extends StatelessWidget {
       ))
     ]));
   }
-}
+}*/
 
 class TheDicePage extends StatefulWidget {
   const TheDicePage({super.key});
@@ -57,6 +58,15 @@ class TheDicePage extends StatefulWidget {
 class _TheDicePageState extends State<TheDicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 6;
+
+  void changeDiceFace() {
+    setState(() {
+      //we add 1 bcs the result of randomising int with the limit 6 are 0-5
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //where we change a variable's value
@@ -67,9 +77,7 @@ class _TheDicePageState extends State<TheDicePage> {
                 padding: EdgeInsets.all(8),
                 child: TextButton(
                     onPressed: () {
-                      setState(() {
-                        leftDiceNumber = Random().nextInt(6) + 1;
-                      });
+                      changeDiceFace();
                     },
                     child: Image(
                         image: AssetImage('images/dice$leftDiceNumber.png'))
@@ -81,9 +89,7 @@ class _TheDicePageState extends State<TheDicePage> {
                 padding: EdgeInsets.all(8),
                 child: TextButton(
                     onPressed: () {
-                      setState(() {
-                        rightDiceNumber = Random().nextInt(6) + 1;
-                      });
+                      changeDiceFace();
                     },
                     child: Image(image: AssetImage('images/dice$rightDiceNumber.png'))
                 )
